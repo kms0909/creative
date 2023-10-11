@@ -1,3 +1,37 @@
+아두이노
+
+void setup() {
+
+  Serial.begin(9600);
+
+}
+
+double th(int v) {
+
+  double t; // http://en.wikipedia.org/wiki/Thermistor
+
+  t = log(((10240000/v) - 10000));
+
+  t = 1 /(0.001129148 + (0.000234125*t) + (0.0000000876741*t*t*t));
+
+  t = t - 273.15; // 화씨를 섭씨로 바꾸어줌
+
+  return t;
+
+}
+
+void loop(){
+
+  int s;
+
+  s = analogRead(A0);
+
+  Serial.println(th(s));
+
+  delay(500);
+
+}
+
 프로세싱
 
 import processing.serial.*;
